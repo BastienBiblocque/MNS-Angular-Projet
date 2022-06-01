@@ -12,7 +12,6 @@ export class LoginServiceService {
 
   postLogin(email: string, password: string) {
     this.http.post<any>("https://reseau.jdedev.fr/api/user/connect",{email:email,password:password}).subscribe(data=>{
-      console.log(data)
       this.userData.token=data.token;
       return 'users log';
     })

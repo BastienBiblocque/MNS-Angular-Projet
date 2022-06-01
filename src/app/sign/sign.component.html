@@ -1,40 +1,41 @@
-<div class="flex justify-center self-center z-10 items-center my-12">
-  <div class="card w-96 bg-base-100 shadow-xl">
-    <div class="card-body">
-      <div class="mb-4">
-        <h3 class="font-semibold text-2xl text-gray-800">Inscription</h3>
-        <p class="text-gray-500">Créer votre compte.</p>
+<form [formGroup]="connectForm" (ngSubmit)="submitForm()">
+  <div class="flex justify-center self-center z-10 items-center my-12">
+    <div class="card w-96 bg-base-100 shadow-xl">
+      <div class="card-body">
+        <div class="mb-4">
+          <h3 class="font-semibold text-2xl text-gray-800">Inscription</h3>
+          <p class="text-gray-500">Créer votre compte.</p>
+        </div>
+        <div class="space-y-5">
+          <div class="space-y-2">
+            <label class="text-sm font-medium text-gray-700 tracking-wide">Mail</label>
+            <input class="input input-bordered input-secondary w-full max-w-xs" formControlName="mail" placeholder="mail@gmail.com">
+          </div>
+          <div class="space-y-2">
+            <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
+              Pseudo
+            </label>
+            <input class="input input-bordered input-secondary w-full max-w-xs" formControlName="pseudo" placeholder="Entrer votre pseudo">
+          </div>
+          <div class="space-y-2">
+            <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
+              Mot de passe
+            </label>
+            <input class="input input-bordered input-secondary w-full max-w-xs" formControlName="password" placeholder="Entrer votre mot de passe">
+          </div>
+          <div class="space-y-2">
+            <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
+              Confirmer le mot de passe
+            </label>
+            <input class="input input-bordered input-secondary w-full max-w-xs" formControlName="passwordVerif" placeholder="Entrer votre mot de passe">
+          </div>
+          <div>
+            <button type="submit" class="w-full flex justify-center btn btn-secondary">
+              Je m'inscris
+            </button>
+          </div>
+        </div>
       </div>
-      <div class="space-y-5">
-        <div class="space-y-2">
-          <label class="text-sm font-medium text-gray-700 tracking-wide">Mail</label>
-          <input class="input input-bordered input-secondary w-full max-w-xs" type="" placeholder="mail@gmail.com">
-        </div>
-        <div class="space-y-2">
-          <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
-            Pseudo
-          </label>
-          <input class="input input-bordered input-secondary w-full max-w-xs" type="" placeholder="Entrer votre pseudo">
-        </div>
-        <div class="space-y-2">
-          <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
-            Mot de passe
-          </label>
-          <input class="input input-bordered input-secondary w-full max-w-xs" type="" placeholder="Entrer votre mot de passe">
-        </div>
-        <div class="space-y-2">
-          <label class="mb-5 text-sm font-medium text-gray-700 tracking-wide">
-            Confirmer le mot de passe
-          </label>
-          <input class="input input-bordered input-secondary w-full max-w-xs" type="" placeholder="Entrer votre mot de passe">
-        </div>
-        <div>
-          <button type="submit" class="w-full flex justify-center btn btn-secondary">
-            Je m'inscris
-          </button>
-        </div>
-      </div>
-
     </div>
   </div>
-</div>
+</form>
