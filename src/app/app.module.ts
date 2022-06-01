@@ -9,6 +9,8 @@ import { FooterComponent } from './footer/footer.component';
 import { LoginComponent } from './login/login.component';
 import { SignComponent } from './sign/sign.component';
 import { UsersListComponent } from './users-list/users-list.component';
+import { ArticleListComponent } from './article-list/article-list.component';
+import {ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -18,11 +20,13 @@ import { UsersListComponent } from './users-list/users-list.component';
     FooterComponent,
     LoginComponent,
     SignComponent,
-    UsersListComponent
+    UsersListComponent,
+    ArticleListComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
