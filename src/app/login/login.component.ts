@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
-
+import { LoginServiceService } from '../services/login-service.services';
+import {Router} from '@angular/router'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -9,7 +10,7 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors,
 export class LoginComponent implements OnInit {
 
   connectForm: FormGroup
-  constructor(formBuilder: FormBuilder) {
+  constructor(formBuilder: FormBuilder, private LoginService:LoginServiceService, private router: Router) {
     this.connectForm = formBuilder.group({
       mail: new FormControl("", [
         Validators.required,
@@ -24,9 +25,12 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
+  retApi: any
+
   submitForm() {
     if (this.connectForm.valid) {
-      alert('Le formulaire est ok')
+      this.LoginService.postLogin(this.connectForm.value.mail,this.connectForm.value.password);
+      this.router.navigateByUrl('/')
     }
     else {
       alert('il y a une erreur dans le formulaire')

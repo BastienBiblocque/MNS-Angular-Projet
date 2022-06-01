@@ -37,8 +37,13 @@
       <li><a routerLink="/articles">Liste des articles</a></li>
     </ul>
   </div>
-  <div class="navbar-end space-x-4">
+  <div class="navbar-end">
+    <div *ngIf="!jwt" class="space-x-4">
     <a routerLink="/sign" class="btn">Inscription</a>
     <a routerLink="/login" class="btn">Connexion</a>
+    </div>
+    <div *ngIf="jwt">
+      <button (click)="logout()" class="btn">Deconnexion</button>
+    </div>
   </div>
 </div>

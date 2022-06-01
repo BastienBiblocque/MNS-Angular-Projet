@@ -11,6 +11,8 @@ import { SignComponent } from './sign/sign.component';
 import { UsersListComponent } from './users-list/users-list.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import {ReactiveFormsModule} from "@angular/forms";
+import { HttpClientModule } from '@angular/common/http';
+import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -21,12 +23,14 @@ import {ReactiveFormsModule} from "@angular/forms";
     LoginComponent,
     SignComponent,
     UsersListComponent,
-    ArticleListComponent
+    ArticleListComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]
