@@ -11,23 +11,22 @@
         <textarea class="textarea textarea-bordered textarea-secondary" placeholder="Contenue"></textarea>
       </div>
     </div>
-
-    <div class="card bg-base-100 shadow-xl p-4">
+    <div *ngFor="let user of articles;" class="card bg-base-100 shadow-xl p-4">
       <div class="grid grid-cols-2">
-        <div class="text-secondary text-xl">Titre de l'article</div>
+        <div class="text-secondary text-xl">{{user.titre}}</div>
         <div class="flex justify-self-end">
           Ecrit par moi
         </div>
       </div>
       <div class="mt-4 text-justify">
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum vestibulum libero at porta. Quisque malesuada turpis ut sagittis condimentum. Sed viverra commodo luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent eu laoreet mauris. Pellentesque ut ipsum non felis placerat pharetra. Integer sit amet nisl dignissim ligula semper feugiat. Donec erat lacus, sagittis vel odio a, posuere viverra ipsum. Donec vitae tellus pharetra, malesuada urna eget, vestibulum nunc. Aenean ut imperdiet arcu. Aliquam ornare ornare lorem, quis consectetur lorem consequat eget. Curabitur et porta purus, ut ullamcorper magna.
+        {{user.contenu}}
       </div>
-      <div class="mt-4 p-8">
-        <div class="text-secondary text-xl">John Doe</div>
-        <div class="text-justify mt-2">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum vestibulum libero at porta. Quisque malesuada turpis ut sagittis condimentum. Sed viverra commodo luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent eu laoreet mauris. Pellentesque ut ipsum non felis placerat pharetra. Integer sit amet nisl dignissim ligula semper feugiat. Donec erat lacus, sagittis vel odio a, posuere viverra ipsum. Donec vitae tellus pharetra, malesuada urna eget, vestibulum nunc. Aenean ut imperdiet arcu. Aliquam ornare ornare lorem, quis consectetur lorem consequat eget. Curabitur et porta purus, ut ullamcorper magna.
-        </div>
-      </div>
+<!--      <div class="mt-4 p-8">-->
+<!--        <div class="text-secondary text-xl">John Doe</div>-->
+<!--        <div class="text-justify mt-2">-->
+<!--          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum vestibulum libero at porta. Quisque malesuada turpis ut sagittis condimentum. Sed viverra commodo luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent eu laoreet mauris. Pellentesque ut ipsum non felis placerat pharetra. Integer sit amet nisl dignissim ligula semper feugiat. Donec erat lacus, sagittis vel odio a, posuere viverra ipsum. Donec vitae tellus pharetra, malesuada urna eget, vestibulum nunc. Aenean ut imperdiet arcu. Aliquam ornare ornare lorem, quis consectetur lorem consequat eget. Curabitur et porta purus, ut ullamcorper magna.-->
+<!--        </div>-->
+<!--      </div>-->
       <div class="grid grid-cols-1 gap-2 mt-2">
         <textarea class="textarea textarea-bordered textarea-secondary" placeholder="Commentaire"></textarea>
         <button type="submit" class="flex justify-self-end btn btn-secondary ">
@@ -35,5 +34,6 @@
         </button>
       </div>
     </div>
+
   </div>
 </div>
