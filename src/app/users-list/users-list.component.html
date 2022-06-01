@@ -1,0 +1,25 @@
+<div class="max-w-5xl mx-auto">
+  <div class="overflow-x-auto">
+    <table class="table table-zebra w-full">
+      <!-- head -->
+      <thead>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Favorite Color</th>
+      </tr>
+      </thead>
+      <tbody>
+      <!-- row 1 -->
+      <tr *ngFor="let tache of taches; let index = index;">
+        <th>{{index+1}}</th>
+        <td>{{tache.task}}</td>
+        <td>{{tache.date}}</td>
+        <td>Blue</td>
+      </tr>
+      <button (click)="ajoutTache()">Ajouter</button>
+      </tbody>
+    </table>
+  </div>
+</div>
