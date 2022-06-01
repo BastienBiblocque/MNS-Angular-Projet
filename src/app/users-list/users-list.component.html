@@ -5,18 +5,17 @@
       <thead>
       <tr>
         <th></th>
-        <th>Nom</th>
-        <th>Date de création</th>
+        <th>Mail</th>
+        <th>Pseudo</th>
       </tr>
       </thead>
       <tbody>
       <!-- row 1 -->
-      <tr *ngFor="let tache of taches; let index = index;">
+      <tr *ngFor="let user of users; let index = index;">
         <th>{{index+1}}</th>
-        <td>{{tache.task}}</td>
-        <td>{{tache.date}}</td>
+        <td>{{user.email}}</td>
+        <td>{{user.pseudo}}</td>
       </tr>
-      <button (click)="ajoutTache()">Ajouter</button>
       </tbody>
     </table>
   </div>

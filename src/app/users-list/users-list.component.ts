@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersServiceServices } from '../services/users-service.services';
+import { LoginServiceService } from '../services/login-service.services';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-users-list',
@@ -7,22 +10,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UsersListComponent implements OnInit {
 
-  taches: [{ task: string, date: string }]
-  constructor() {
-    this.taches = [
-      {task:'promener le chien',date:'15-01-2020'},
-    ]
+  users: [{ email: string; pseudo: string; }] | undefined
+  constructor(private UsersServices:UsersServiceServices, private LoginServices:LoginServiceService, private router: Router) {
+    this.checkJwt();
+    this.getUsers()
+  }
+  getUsers(): void {
+    this.UsersServices.getUsers().subscribe((val: any) => {
+      this.users = val;
+    })
   }
 
-  ajoutTache() {
-    this.taches.push({task:'test',date:'15-25-2502'})
+  checkJwt(){
+    if (!this.LoginServices.getJwt()) {
+      this.router.navigateByUrl('/login');
+    }
   }
-
   ngOnInit(): void {
   }
-  // ajoutTache() {
-  //   this.taches.push(this.tacheEnCour)
-  //   this.tacheEnCour = ""
-  // }
 
 }

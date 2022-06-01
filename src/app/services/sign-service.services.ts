@@ -12,5 +12,4 @@ export class SignServiceServices {
       return 'users sign';
     })
   }
-
 }
