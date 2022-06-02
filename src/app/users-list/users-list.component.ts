@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class UsersListComponent implements OnInit {
 
-  users: [{ email: string; pseudo: string; }] | undefined
+  users: [{ email: string; pseudo: string; id:number }] | undefined
   constructor(private UsersServices:UsersServiceServices, private LoginServices:LoginServiceService, private router: Router) {
     this.checkJwt();
     this.getUsers()
@@ -26,6 +26,12 @@ export class UsersListComponent implements OnInit {
       this.router.navigateByUrl('/login');
     }
   }
+
+  goToUserPage(id:number){
+    console.log(id);
+    this.router.navigateByUrl(`/users/${id}`);
+  }
+
   ngOnInit(): void {
   }
 

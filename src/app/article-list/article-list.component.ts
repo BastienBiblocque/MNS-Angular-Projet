@@ -42,7 +42,6 @@ export class ArticleListComponent implements OnInit {
     this.articles=undefined;
     this.ArticlesService.getArticles().subscribe((val: any) => {
       this.articles = val;
-      console.log(this.articles)
     })
   }
 
@@ -63,9 +62,6 @@ export class ArticleListComponent implements OnInit {
   }
 
   submitUpdate() {
-    console.log(this.contenuUpdate)
-    console.log(this.titreUpdate)
-    console.log(this.idUpdate)
     this.ArticlesService.updateArticle( this.titreUpdate, this.contenuUpdate, this.idUpdate).subscribe(() => {
       this.getArticles()
     })

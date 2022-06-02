@@ -1,0 +1,28 @@
+<div class="max-w-5xl mx-auto">
+  <div class="my-8 grid grid-cols-3 gap-8">
+    <div class="bg-white border-t-4 border-secondary p-4">
+      <img src="https://api.lorem.space/image?w=200&h=200" class="mx-auto h-40 w-40 rounded-md object-contain"/>
+      <div class="">
+        <p class="text-secondary text-center text-xl">{{userData.pseudo}}</p>
+        <p class="text-primary text-center">{{userData.email}}</p>
+      </div>
+    </div>
+    <div class="bg-white border-t-4 border-secondary ">
+      <p class="text-secondary text-center text-xl">Les 5 derniers articles</p>
+      <div class="py-4 space-y-4" *ngFor="let article of articles;">
+        <div class="border border-secondary rounded-md mx-4 px-4 py-2">
+          <p class="text-l text-center text-secondary">{{article.titre}}</p>
+          <p class="text-justify">{{article.contenu}}</p>
+        </div>
+      </div>
+    </div>
+    <div class="bg-white border-t-4 border-secondary ">
+      <p class="text-secondary text-center text-xl">Les 5 derniers commentaires</p>
+      <div class="py-4 space-y-4" *ngFor="let comment of comments;">
+        <div class="border border-secondary rounded-md mx-4 px-4 py-2">
+          <p class="text-justify">{{comment.contenu}}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

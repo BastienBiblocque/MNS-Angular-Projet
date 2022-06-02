@@ -13,6 +13,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { HttpClientModule } from '@angular/common/http';
 import { LogoutComponent } from './logout/logout.component';
+import { UserPageComponent } from './user-page/user-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { LogoutComponent } from './logout/logout.component';
     SignComponent,
     UsersListComponent,
     ArticleListComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserPageComponent
   ],
     imports: [
         BrowserModule,
