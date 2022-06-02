@@ -28,7 +28,6 @@ export class UsersListComponent implements OnInit {
   }
 
   goToUserPage(id:number){
-    console.log(id);
     this.router.navigateByUrl(`/users/${id}`);
   }
 

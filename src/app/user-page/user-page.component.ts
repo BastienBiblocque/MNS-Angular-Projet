@@ -28,7 +28,6 @@ export class UserPageComponent implements OnInit {
     this.UsersServices.getUserData(url[url.length - 1]).subscribe((val: any) => {
       this.userData = val;
     })
-    console.log(this.userData);
   }
 
   getUserComments(): void {
