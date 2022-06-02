@@ -6,6 +6,29 @@
         <p class="text-secondary text-center text-xl">{{userData.pseudo}}</p>
         <p class="text-primary text-center">{{userData.email}}</p>
       </div>
+      <ng-container *ngIf="canUpdateDelete">
+        <input type="checkbox" id="my-modal-3" class="modal-toggle">
+        <div class="modal">
+          <div class="modal-box relative">
+            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <div class="grid grid-cols-1 gap-4">
+              <input [(ngModel)]="pseudoUpdate" class="input input-bordered input-secondary w-full max-w-xs" placeholder="Pseudo">
+              <input [(ngModel)]="mailUpdate" class="input input-bordered input-secondary w-full max-w-xs" placeholder="Mail">
+              <input [(ngModel)]="passwordUpdate" class="input input-bordered input-secondary w-full max-w-xs" placeholder="Nouveau mot de passe">
+              <button type="submit" (click)="updateProfil()" class="flex justify-self-end btn btn-secondary ">
+                Mettre à jour
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="grid grid-cols-1 gap-4 justify-items-center mt-4">
+          <label for="my-modal-3" class="btn modal-button">Modifier</label>
+          <button (click)="deleteUser()" class="rounded-md p-4 bg-red-500">
+            Supprimer
+          </button>
+        </div>
+      </ng-container>
     </div>
     <div class="bg-white border-t-4 border-secondary ">
       <p class="text-secondary text-center text-xl">Les 5 derniers articles</p>

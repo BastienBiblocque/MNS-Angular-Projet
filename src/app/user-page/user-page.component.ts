@@ -15,6 +15,10 @@ export class UserPageComponent implements OnInit {
   userData: { email: string; pseudo: string; id:number }
   comments:[ { contenu:string; creation:string; id:number; id_article:number; id_commentaire:number } ] | undefined
   articles: [{ id_article: number; titre: string; contenu: string; id:number }] | undefined
+  canUpdateDelete:boolean|undefined
+  pseudoUpdate:string
+  mailUpdate:string
+  passwordUpdate:string
 
   constructor(private ArticlesServices:ArticlesServiceServices,private UsersServices:UsersServiceServices,private CommentServices:CommentServiceServices, private LoginServices:LoginServiceService, private router: Router) {
     this.checkJwt();
@@ -22,11 +26,18 @@ export class UserPageComponent implements OnInit {
     this.getUserData()
     this.getUserComments();
     this.getUserArticles();
+    this.setCanUpdateDelete();
+    this.pseudoUpdate='';
+    this.mailUpdate='';
+    this.passwordUpdate='';
   }
+
   getUserData(): void {
     const url = this.router.url.split('/')
     this.UsersServices.getUserData(url[url.length - 1]).subscribe((val: any) => {
       this.userData = val;
+      this.pseudoUpdate=val.pseudo;
+      this.mailUpdate=val.email;
     })
   }
 
@@ -48,6 +59,36 @@ export class UserPageComponent implements OnInit {
     if (!this.LoginServices.getJwt()) {
       this.router.navigateByUrl('/login');
     }
+  }
+
+  deleteUser(){
+    const url = this.router.url.split('/')
+    this.UsersServices.deleteUser(url[url.length - 1]).subscribe(() => {
+      this.router.navigateByUrl('/login');
+    })
+  }
+
+  setCanUpdateDelete(){
+    const url = this.router.url.split('/')
+    const currentUserData = this.LoginServices.getUsersData();
+    if (url[url.length - 1].toString() === currentUserData.id.toString()) {
+      this.canUpdateDelete=true;
+      console.log(this.canUpdateDelete)
+    }
+  }
+
+  updateProfil(){
+    const url = this.router.url.split('/');
+    const regex = new RegExp(/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/);
+    if (regex.test(this.passwordUpdate)){
+      console.log(this.passwordUpdate)
+      this.UsersServices.updateUser( this.pseudoUpdate, this.mailUpdate, this.passwordUpdate, url[url.length - 1], ).subscribe(() => {
+        this.getUserData()
+      })
+    } else {
+      alert('Mot de passe non conforme');
+    }
+
   }
 
   ngOnInit(): void {
