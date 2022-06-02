@@ -15,12 +15,19 @@ export class ArticleListComponent implements OnInit {
 
   articles: [{ id_article: number; titre: string; contenu: string; id:number }] | undefined
 
+  titreUpdate:string
+  contenuUpdate:string
+  idUpdate:number
+
   userId:string|undefined
 
   constructor(formBuilder: FormBuilder, private ArticlesService:ArticlesServiceServices, private LoginServices:LoginServiceService, private router: Router) {
+    this.titreUpdate='';
+    this.contenuUpdate='';
+    this.idUpdate=0;
     this.checkJwt();
     this.getArticles();
-    //formulaire d'ajout de message
+    //formulaire d'ajout d'article
     this.connectForm = formBuilder.group({
       titre: new FormControl("", [
         Validators.required,
@@ -35,6 +42,7 @@ export class ArticleListComponent implements OnInit {
     this.articles=undefined;
     this.ArticlesService.getArticles().subscribe((val: any) => {
       this.articles = val;
+      console.log(this.articles)
     })
   }
 
@@ -46,6 +54,21 @@ export class ArticleListComponent implements OnInit {
     } else {
       alert('Erreur de formulaire');
     }
+  }
+
+  setUpdatedData(titreUpdate:string, contenueUpdate:string, id:number){
+    this.titreUpdate = titreUpdate;
+    this.contenuUpdate = contenueUpdate;
+    this.idUpdate=id;
+  }
+
+  submitUpdate() {
+    console.log(this.contenuUpdate)
+    console.log(this.titreUpdate)
+    console.log(this.idUpdate)
+    this.ArticlesService.updateArticle( this.titreUpdate, this.contenuUpdate, this.idUpdate).subscribe(() => {
+      this.getArticles()
+    })
   }
 
   ngOnInit(): void {

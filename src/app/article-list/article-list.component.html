@@ -1,6 +1,5 @@
 <div class="max-w-5xl mx-auto mt-8">
   <div class="space-y-8">
-    {{userId}}
     <form [formGroup]="connectForm" (ngSubmit)="submitForm()" class="card bg-base-100 shadow-xl p-4">
       <div class="grid grid-cols-1 gap-4">
         <div class="grid grid-cols-2">
@@ -23,9 +22,21 @@
         {{article.contenu}}
       </div>
       <div *ngIf="userId?.toString() === article.id.toString()" class="flex space-x-4">
-        <button type="submit" class="flex justify-self-end btn btn-secondary">
-          Modifier
-        </button>
+        <label for="my-modal-3" (click)="setUpdatedData(article.titre,article.contenu,article.id_article)" class="btn modal-button">Modifier</label>
+        <input type="checkbox" id="my-modal-3" class="modal-toggle">
+        <div class="modal">
+          <div class="modal-box relative">
+            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+            <div class="grid grid-cols-1 gap-4">
+              <input [(ngModel)]="titreUpdate" class="input input-bordered input-secondary w-full max-w-xs" placeholder="Titre">
+              <input [(ngModel)]="idUpdate" class="input input-bordered input-secondary w-full max-w-xs hidden" placeholder="Titre">
+              <textarea [(ngModel)]="contenuUpdate" class="textarea textarea-bordered textarea-secondary mt-2" placeholder="Contenue" value="{{article.contenu}}"></textarea>
+              <button (click)="submitUpdate()" type="submit" class="flex justify-self-end btn btn-secondary ">
+                Mettre à jour
+              </button>
+            </div>
+          </div>
+        </div>
         <button type="submit" (click)="deleteArticle(article.id_article)" class="flex justify-self-end btn btn-secondary">
           Supprimer
         </button>

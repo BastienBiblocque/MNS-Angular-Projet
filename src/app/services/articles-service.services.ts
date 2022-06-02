@@ -27,6 +27,15 @@ export class ArticlesServiceServices {
     return this.http.post<any>("https://reseau.jdedev.fr/api/article",{titre:titre,contenu:contenu}, {headers})
   }
 
+  updateArticle(titre: string, contenu: string, id:number):any {
+    const jwt = this.LoginService.getJwt();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${jwt}`
+    })
+    return this.http.put<any>(`https://reseau.jdedev.fr/api/article/${id}`,{titre:titre,contenu:contenu}, {headers})
+  }
+
   deleteArticle(id:number):any {
     const jwt = this.LoginService.getJwt();
     const headers = new HttpHeaders({

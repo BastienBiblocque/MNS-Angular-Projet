@@ -21,6 +21,7 @@ export class LoginServiceService {
   }
   getJwt() {
     return this.userData.token;
+    // return 'eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6MjE3LCJuaXZlYXUiOjEsImlhdCI6MTY1NDE1NTQ3MiwiZXhwIjoxNjU0MTYyNjcyfQ.NY0OVeI170gmKI3FW8BcadZWPrx1_S6PhPBgKZTvumNtU5F6s4zox3Up50BpxOJDhSU4VhDT684-0eaoBCd80w'
   }
   logout(){
     this.userData = {token:'',id:'',email:''};
