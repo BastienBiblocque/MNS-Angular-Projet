@@ -1,25 +1,34 @@
 <div class="max-w-5xl mx-auto mt-8">
   <div class="space-y-8">
-    <div class="card bg-base-100 shadow-xl p-4">
+    {{userId}}
+    <form [formGroup]="connectForm" (ngSubmit)="submitForm()" class="card bg-base-100 shadow-xl p-4">
       <div class="grid grid-cols-1 gap-4">
         <div class="grid grid-cols-2">
-          <input class="input input-bordered input-secondary w-full max-w-xs" type="" placeholder="Titre">
+          <input formControlName="titre" class="input input-bordered input-secondary w-full max-w-xs" type="" placeholder="Titre">
           <button type="submit" class="flex justify-self-end btn btn-secondary ">
             Envoyer
           </button>
+        <textarea class="textarea textarea-bordered textarea-secondary mt-2" formControlName="contenu" placeholder="Contenue"></textarea>
         </div>
-        <textarea class="textarea textarea-bordered textarea-secondary" placeholder="Contenue"></textarea>
       </div>
-    </div>
-    <div *ngFor="let user of articles;" class="card bg-base-100 shadow-xl p-4">
+    </form>
+    <div *ngFor="let article of articles;" class="card bg-base-100 shadow-xl p-4">
       <div class="grid grid-cols-2">
-        <div class="text-secondary text-xl">{{user.titre}}</div>
+        <div class="text-secondary text-xl">{{article.titre}}</div>
         <div class="flex justify-self-end">
           Ecrit par moi
         </div>
       </div>
       <div class="mt-4 text-justify">
-        {{user.contenu}}
+        {{article.contenu}}
+      </div>
+      <div *ngIf="userId?.toString() === article.id.toString()" class="flex space-x-4">
+        <button type="submit" class="flex justify-self-end btn btn-secondary">
+          Modifier
+        </button>
+        <button type="submit" (click)="deleteArticle(article.id_article)" class="flex justify-self-end btn btn-secondary">
+          Supprimer
+        </button>
       </div>
 <!--      <div class="mt-4 p-8">-->
 <!--        <div class="text-secondary text-xl">John Doe</div>-->
@@ -29,9 +38,9 @@
 <!--      </div>-->
       <div class="grid grid-cols-1 gap-2 mt-2">
         <textarea class="textarea textarea-bordered textarea-secondary" placeholder="Commentaire"></textarea>
-        <button type="submit" class="flex justify-self-end btn btn-secondary ">
-          Envoyer
-        </button>
+          <button type="submit" class="flex justify-self-end btn btn-secondary">
+            Envoyer
+          </button>
       </div>
     </div>
 

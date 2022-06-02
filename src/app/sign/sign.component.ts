@@ -41,7 +41,6 @@ export class SignComponent implements OnInit {
     };
   }
 
-  retApi: any
   submitForm() {
     if (this.connectForm.valid) {
       if (this.connectForm.value.password === this.connectForm.value.passwordVerif){
