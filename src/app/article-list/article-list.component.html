@@ -41,7 +41,7 @@
             Supprimer
           </button>
         </div>
-        <div *ngFor="let commentaire of commentaires">
+        <div *ngFor="let commentaire of article.commentaire">
           <div *ngIf="commentaire.id_article === article.id_article" class="mt-4 p-8">
             <div class="text-secondary text-xl">{{commentaire.auteur}}</div>
             <div class="text-justify mt-2">

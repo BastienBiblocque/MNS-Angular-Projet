@@ -15,8 +15,8 @@ export class ArticleListComponent implements OnInit {
 
   connectForm: FormGroup
 
-  articles: [{ id_article: number; titre: string; contenu: string; id:number; auteur:string }] | undefined
-  commentaires: [{ id_commentaire: number; contenu: string; id:number; id_article:number; auteur:string }] | undefined
+  articles: [{ id_article: number; titre: string; contenu: string; id:number; auteur:string; commentaire:[{ id_commentaire: number; contenu: string; id:number; id_article:number; auteur:string }]}] | undefined
+  // commentaires: [] | undefined
 
   titreUpdate:string
   contenuUpdate:string
@@ -42,24 +42,9 @@ export class ArticleListComponent implements OnInit {
   }
 
   getArticlesAndComment(): void {
-    //commentaire
-    this.commentaires = [{ id_commentaire: 0, contenu: '', id: 0, id_article: 0, auteur:'' }];
-    let commentsList:Array<any>;
-    this.CommentService.getComments().subscribe((val: any) => {
-      commentsList = val;
-      let usersList:Array<any>;
-      this.UsersService.getUsers().subscribe((val: any) => {
-        usersList = val;
-        commentsList.forEach((element: { id_commentaire: number; contenu: string; id: number; id_article: number; auteur:string })=>{
-          const auteur = usersList.find(user=> user.id === element.id )
-          element.auteur = auteur.pseudo
-          this.commentaires?.push(element)
-        })
-      })
-    })
     //article
 
-    this.articles = [{ id_article: 0, titre: '', contenu: '', id:0, auteur:'' }];
+    this.articles = [{ id_article: 0, titre: '', contenu: '', id:0, auteur:'',commentaire:[{ id_commentaire: 0, contenu: '', id:0, id_article:0, auteur:'' }] }];
     let articlesList:Array<any>;
     this.ArticlesService.getArticles().subscribe((val: any) => {
       articlesList = val;
@@ -69,10 +54,42 @@ export class ArticleListComponent implements OnInit {
         articlesList.forEach((element)=>{
           const auteur = usersList.find(user=>user.id === element.id)
           element.auteur = auteur.pseudo;
+          element.commentaire = [];
+          let commentsList:Array<any>;
+          this.CommentService.getComments().subscribe((val: any) => {
+            commentsList = val;
+            let usersList:Array<any>;
+            this.UsersService.getUsers().subscribe((val: any) => {
+              usersList = val;
+              commentsList.forEach((comment: { id_commentaire: number; contenu: string; id: number; id_article: number; auteur:string })=>{
+                const auteur = usersList.find(user=> user.id === element.id )
+                comment.auteur = auteur.pseudo
+                element.commentaire.push(comment)
+              })
+            })
+          })
+          //add dans articles
           this.articles?.push(element);
         })
       })
     })
+
+
+    // //commentaire
+    // let commentsList:Array<any>;
+    // this.CommentService.getComments().subscribe((val: any) => {
+    //   commentsList = val;
+    //   let usersList:Array<any>;
+    //   this.UsersService.getUsers().subscribe((val: any) => {
+    //     usersList = val;
+    //     commentsList.forEach((element: { id_commentaire: number; contenu: string; id: number; id_article: number; auteur:string })=>{
+    //       const auteur = usersList.find(user=> user.id === element.id )
+    //       element.auteur = auteur.pseudo
+    //       this.commentaires?.push(element)
+    //     })
+    //   })
+    // })
+
   }
 
   submitForm() {
