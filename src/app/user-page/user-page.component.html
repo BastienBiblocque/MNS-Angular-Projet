@@ -1,7 +1,8 @@
 <div class="max-w-5xl mx-auto">
   <div class="my-8 grid grid-cols-3 gap-8">
     <div class="bg-white border-t-4 border-secondary p-4">
-      <img src="https://api.lorem.space/image?w=200&h=200" class="mx-auto h-40 w-40 rounded-md object-contain"/>
+      <img *ngIf="userData.avatar" [src]="userData.avatar" class="mx-auto h-40 w-40 rounded-md object-contain"/>
+      <img *ngIf="!userData.avatar" src="https://api.lorem.space/image/fashion?w=200&h=200" class="mx-auto h-40 w-40 rounded-md object-contain"/>
       <div class="">
         <p class="text-secondary text-center text-xl">{{userData.pseudo}}</p>
         <p class="text-primary text-center">{{userData.email}}</p>

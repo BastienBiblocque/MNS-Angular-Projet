@@ -12,7 +12,7 @@ import {ArticlesServiceServices} from "../services/articles-service.services";
 })
 export class UserPageComponent implements OnInit {
 
-  userData: { email: string; pseudo: string; id:number }
+  userData: { email: string; pseudo: string; id:number;avatar:string }
   comments:[ { contenu:string; creation:string; id:number; id_article:number; id_commentaire:number } ] | undefined
   articles: [{ id_article: number; titre: string; contenu: string; id:number }] | undefined
   canUpdateDelete:boolean|undefined
@@ -22,7 +22,7 @@ export class UserPageComponent implements OnInit {
 
   constructor(private ArticlesServices:ArticlesServiceServices,private UsersServices:UsersServiceServices,private CommentServices:CommentServiceServices, private LoginServices:LoginServiceService, private router: Router) {
     this.checkJwt();
-    this.userData = {email:'',pseudo:'', id:0}
+    this.userData = {email:'',pseudo:'', id:0,avatar:''}
     this.getUserData()
     this.getUserComments();
     this.getUserArticles();
