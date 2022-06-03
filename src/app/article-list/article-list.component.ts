@@ -14,6 +14,7 @@ import {UsersServiceServices} from "../services/users-service.services";
 export class ArticleListComponent implements OnInit {
 
   connectForm: FormGroup
+  connectFormComment: FormGroup
 
   articles: [{ id_article: number; titre: string; contenu: string; id:number; auteur:string; commentaire:[{ id_commentaire: number; contenu: string; id:number; id_article:number; auteur:string }]}] | undefined
   // commentaires: [] | undefined
@@ -22,12 +23,17 @@ export class ArticleListComponent implements OnInit {
   contenuUpdate:string
   idUpdate:number
 
+  idArticleToAddComment:number
+  commentToAdd:string
+
   userId:string|undefined
 
   constructor(formBuilder: FormBuilder, private UsersService:UsersServiceServices,private CommentService:CommentServiceServices,private ArticlesService:ArticlesServiceServices, private LoginServices:LoginServiceService, private router: Router) {
     this.titreUpdate='';
     this.contenuUpdate='';
     this.idUpdate=0;
+    this.idArticleToAddComment=0;
+    this.commentToAdd='';
     this.checkJwt();
     this.getArticlesAndComment();
     //formulaire d'ajout d'article
@@ -35,6 +41,12 @@ export class ArticleListComponent implements OnInit {
       titre: new FormControl("", [
         Validators.required,
       ]),
+      contenu: new FormControl("", [
+        Validators.required,
+      ]),
+    })
+    //formulaire d'ajout d'un commentaire
+    this.connectFormComment = formBuilder.group({
       contenu: new FormControl("", [
         Validators.required,
       ]),
@@ -108,6 +120,10 @@ export class ArticleListComponent implements OnInit {
     this.idUpdate=id;
   }
 
+  setPostCommentData(id:number){
+    this.idArticleToAddComment=id;
+  }
+
   submitUpdate() {
     this.ArticlesService.updateArticle( this.titreUpdate, this.contenuUpdate, this.idUpdate).subscribe(() => {
       this.getArticlesAndComment()
@@ -127,6 +143,13 @@ export class ArticleListComponent implements OnInit {
   deleteArticle(id: number){
     this.ArticlesService.deleteArticle(id).subscribe(()=>{
       this.getArticlesAndComment();
+    })
+  }
+
+
+  submitAddComment() {
+    this.CommentService.postComment(this.commentToAdd, this.idArticleToAddComment).subscribe(() => {
+      this.getArticlesAndComment()
     })
   }
 

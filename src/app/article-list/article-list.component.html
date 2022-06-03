@@ -50,12 +50,21 @@
           </div>
         </div>
 
-        <div class="grid grid-cols-1 gap-2 mt-2">
-          <textarea class="textarea textarea-bordered textarea-secondary" placeholder="Commentaire"></textarea>
-          <button type="submit" class="flex justify-self-end btn btn-secondary">
-            Envoyer
-          </button>
+      <label for="my-modal-comment" (click)="setPostCommentData(article.id_article)" class="btn modal-button">Commenter</label>
+      <input type="checkbox" id="my-modal-comment" class="modal-toggle">
+      <div class="modal">
+        <div class="modal-box relative">
+          <label for="my-modal-comment" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+          <div class="grid grid-cols-1 gap-4">
+            <textarea [(ngModel)]="commentToAdd" class="textarea textarea-bordered textarea-secondary mt-2" placeholder="Contenue" value="{{article.contenu}}"></textarea>
+            <button (click)="submitAddComment()" type="submit" class="flex justify-self-end btn btn-secondary ">
+              Mettre à jour
+            </button>
+          </div>
         </div>
+      </div>
+
+
       </div>
   </div>
 </div>

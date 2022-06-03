@@ -27,4 +27,13 @@ export class CommentServiceServices {
     return this.http.get<any>(`https://reseau.jdedev.fr/api/comment`,{headers:headers})
   }
 
+  postComment(contenu:string, id:number):any {
+    const jwt = this.LoginService.getJwt();
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${jwt}`
+    })
+    return this.http.post<any>(`https://reseau.jdedev.fr/api/comment`,{contenu:contenu,idArt:id},{headers:headers})
+  }
+
 }
