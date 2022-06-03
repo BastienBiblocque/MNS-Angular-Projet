@@ -47,11 +47,11 @@
             <div class="text-justify mt-2">
               {{commentaire.contenu}}
             </div>
-            <div *ngIf="userId?.toString() === commentaire.id.toString()">
+            <div *ngIf="userId?.toString() === commentaire.id.toString()" class="grid grid-cols-2 gap-4 ">
               <button type="submit" (click)="deleteCommentaire(commentaire.id_commentaire)" class="flex justify-self-end btn btn-secondary">
                 Supprimer
               </button>
-              <label for="my-modal-comment-update" (click)="setUpdateCommentData(commentaire.contenu,commentaire.id_commentaire)" class="btn modal-button">Modifier</label>
+              <label for="my-modal-comment-update" (click)="setUpdateCommentData(commentaire.contenu,commentaire.id_commentaire)" class="flex btn w-1/2 ">Modifier</label>
               <input type="checkbox" id="my-modal-comment-update" class="modal-toggle">
               <div class="modal">
                 <div class="modal-box relative">
@@ -67,7 +67,7 @@
             </div>
           </div>
         </div>
-      <label for="my-modal-comment" (click)="setPostCommentData(article.id_article)" class="btn modal-button">Commenter</label>
+      <label for="my-modal-comment" (click)="setPostCommentData(article.id_article)" class="btn modal-button w-1/2 mx-auto mt-4">Commenter</label>
       <input type="checkbox" id="my-modal-comment" class="modal-toggle">
       <div class="modal">
         <div class="modal-box relative">
