@@ -12,48 +12,50 @@
       </div>
     </form>
     <div *ngFor="let article of articles;" class="card bg-base-100 shadow-xl p-4">
-      <div class="grid grid-cols-2">
-        <div class="text-secondary text-xl">{{article.titre}}</div>
-        <div class="flex justify-self-end">
-          Ecrit par moi
+        <div class="grid grid-cols-2">
+          <div class="text-secondary text-xl">{{article.titre}}</div>
+          <div class="flex justify-self-end" *ngIf="article.auteur">
+            Ecrit par {{article.auteur}}
+          </div>
         </div>
-      </div>
-      <div class="mt-4 text-justify">
-        {{article.contenu}}
-      </div>
-      <div *ngIf="userId?.toString() === article.id.toString()" class="flex space-x-4">
-        <label for="my-modal-3" (click)="setUpdatedData(article.titre,article.contenu,article.id_article)" class="btn modal-button">Modifier</label>
-        <input type="checkbox" id="my-modal-3" class="modal-toggle">
-        <div class="modal">
-          <div class="modal-box relative">
-            <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-            <div class="grid grid-cols-1 gap-4">
-              <input [(ngModel)]="titreUpdate" class="input input-bordered input-secondary w-full max-w-xs" placeholder="Titre">
-              <input [(ngModel)]="idUpdate" class="input input-bordered input-secondary w-full max-w-xs hidden" placeholder="Titre">
-              <textarea [(ngModel)]="contenuUpdate" class="textarea textarea-bordered textarea-secondary mt-2" placeholder="Contenue" value="{{article.contenu}}"></textarea>
-              <button (click)="submitUpdate()" type="submit" class="flex justify-self-end btn btn-secondary ">
-                Mettre à jour
-              </button>
+        <div class="mt-4 text-justify">
+          {{article.contenu}}
+        </div>
+        <div *ngIf="userId?.toString() === article.id.toString()" class="flex space-x-4">
+          <label for="my-modal-3" (click)="setUpdatedData(article.titre,article.contenu,article.id_article)" class="btn modal-button">Modifier</label>
+          <input type="checkbox" id="my-modal-3" class="modal-toggle">
+          <div class="modal">
+            <div class="modal-box relative">
+              <label for="my-modal-3" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+              <div class="grid grid-cols-1 gap-4">
+                <input [(ngModel)]="titreUpdate" class="input input-bordered input-secondary w-full max-w-xs" placeholder="Titre">
+                <input [(ngModel)]="idUpdate" class="input input-bordered input-secondary w-full max-w-xs hidden" placeholder="Titre">
+                <textarea [(ngModel)]="contenuUpdate" class="textarea textarea-bordered textarea-secondary mt-2" placeholder="Contenue" value="{{article.contenu}}"></textarea>
+                <button (click)="submitUpdate()" type="submit" class="flex justify-self-end btn btn-secondary ">
+                  Mettre à jour
+                </button>
+              </div>
+            </div>
+          </div>
+          <button type="submit" (click)="deleteArticle(article.id_article)" class="flex justify-self-end btn btn-secondary">
+            Supprimer
+          </button>
+        </div>
+        <div *ngFor="let commentaire of commentaires">
+          <div *ngIf="commentaire.id_article === article.id_article" class="mt-4 p-8">
+            <div class="text-secondary text-xl">{{commentaire.auteur}}</div>
+            <div class="text-justify mt-2">
+              {{commentaire.contenu}}
             </div>
           </div>
         </div>
-        <button type="submit" (click)="deleteArticle(article.id_article)" class="flex justify-self-end btn btn-secondary">
-          Supprimer
-        </button>
-      </div>
-<!--      <div class="mt-4 p-8">-->
-<!--        <div class="text-secondary text-xl">John Doe</div>-->
-<!--        <div class="text-justify mt-2">-->
-<!--          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent elementum vestibulum libero at porta. Quisque malesuada turpis ut sagittis condimentum. Sed viverra commodo luctus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Praesent eu laoreet mauris. Pellentesque ut ipsum non felis placerat pharetra. Integer sit amet nisl dignissim ligula semper feugiat. Donec erat lacus, sagittis vel odio a, posuere viverra ipsum. Donec vitae tellus pharetra, malesuada urna eget, vestibulum nunc. Aenean ut imperdiet arcu. Aliquam ornare ornare lorem, quis consectetur lorem consequat eget. Curabitur et porta purus, ut ullamcorper magna.-->
-<!--        </div>-->
-<!--      </div>-->
-      <div class="grid grid-cols-1 gap-2 mt-2">
-        <textarea class="textarea textarea-bordered textarea-secondary" placeholder="Commentaire"></textarea>
+
+        <div class="grid grid-cols-1 gap-2 mt-2">
+          <textarea class="textarea textarea-bordered textarea-secondary" placeholder="Commentaire"></textarea>
           <button type="submit" class="flex justify-self-end btn btn-secondary">
             Envoyer
           </button>
+        </div>
       </div>
-    </div>
-
   </div>
 </div>
