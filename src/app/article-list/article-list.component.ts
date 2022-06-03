@@ -83,7 +83,6 @@ export class ArticleListComponent implements OnInit {
           })
           commentsList.forEach((comment: { id_commentaire: number; contenu: string; id: number; id_article: number; auteur:string })=>{
             const auteur = usersList.find(user=> user.id === comment.id )
-            console.log(auteur)
             if (auteur) {
               comment.auteur = auteur.pseudo
             } else {

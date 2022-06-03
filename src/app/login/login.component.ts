@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AbstractControl, FormBuilder, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { LoginServiceService } from '../services/login-service.services';
-import {Router} from '@angular/router'
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -10,7 +9,7 @@ import {Router} from '@angular/router'
 export class LoginComponent implements OnInit {
 
   connectForm: FormGroup
-  constructor(formBuilder: FormBuilder, private LoginService:LoginServiceService, private router: Router) {
+  constructor(formBuilder: FormBuilder, private LoginService:LoginServiceService) {
     this.connectForm = formBuilder.group({
       mail: new FormControl("", [
         Validators.required,
@@ -29,11 +28,7 @@ export class LoginComponent implements OnInit {
 
   submitForm() {
     if (this.connectForm.valid) {
-      if (this.LoginService.postLogin(this.connectForm.value.mail,this.connectForm.value.password)){
-        this.router.navigateByUrl('/')
-      } else {
-        alert('Erreur de connexion')
-      }
+      this.LoginService.postLogin(this.connectForm.value.mail,this.connectForm.value.password)
     }
     else {
       alert('il y a une erreur dans le formulaire')

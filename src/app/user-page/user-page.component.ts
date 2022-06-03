@@ -63,9 +63,13 @@ export class UserPageComponent implements OnInit {
 
   deleteUser(){
     const url = this.router.url.split('/')
-    this.UsersServices.deleteUser(url[url.length - 1]).subscribe(() => {
-      this.router.navigateByUrl('/login');
-    })
+    if (this.articles || this.comments) {
+      alert('Vous avez post des data supprésion impossible')
+    } else {
+      this.UsersServices.deleteUser(url[url.length - 1]).subscribe(() => {
+        this.router.navigateByUrl('/login');
+      })
+    }
   }
 
   setCanUpdateDelete(){
@@ -73,7 +77,6 @@ export class UserPageComponent implements OnInit {
     const currentUserData = this.LoginServices.getUsersData();
     if (url[url.length - 1].toString() === currentUserData.id.toString()) {
       this.canUpdateDelete=true;
-      console.log(this.canUpdateDelete)
     }
   }
 
@@ -81,7 +84,6 @@ export class UserPageComponent implements OnInit {
     const url = this.router.url.split('/');
     const regex = new RegExp(/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/);
     if (regex.test(this.passwordUpdate)){
-      console.log(this.passwordUpdate)
       this.UsersServices.updateUser( this.pseudoUpdate, this.mailUpdate, this.passwordUpdate, url[url.length - 1], ).subscribe(() => {
         this.getUserData()
       })
