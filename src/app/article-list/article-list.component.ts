@@ -61,6 +61,7 @@ export class ArticleListComponent implements OnInit {
 
   getArticlesAndComment(): void {
     this.articles = [{ id_article: 0, titre: '', contenu: '', id:0, auteur:'',commentaire:[{ id_commentaire: 0, contenu: '', id:0, id_article:0, auteur:'' }] }];
+    this.articles.shift();
     let articlesList:Array<any>;
     this.ArticlesService.getArticles().subscribe((val: any) => {
       articlesList = val;
