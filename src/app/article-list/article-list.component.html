@@ -47,24 +47,39 @@
             <div class="text-justify mt-2">
               {{commentaire.contenu}}
             </div>
+            <div *ngIf="userId?.toString() === commentaire.id.toString()">
+              <button type="submit" (click)="deleteCommentaire(commentaire.id_commentaire)" class="flex justify-self-end btn btn-secondary">
+                Supprimer
+              </button>
+              <label for="my-modal-comment-update" (click)="setUpdateCommentData(commentaire.contenu,commentaire.id_commentaire)" class="btn modal-button">Modifier</label>
+              <input type="checkbox" id="my-modal-comment-update" class="modal-toggle">
+              <div class="modal">
+                <div class="modal-box relative">
+                  <label for="my-modal-comment-update" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                  <div class="grid grid-cols-1 gap-4">
+                    <textarea [(ngModel)]="commentaireUpdate" class="textarea textarea-bordered textarea-secondary mt-2" placeholder="Commentaire" value="{{article.contenu}}"></textarea>
+                    <button (click)="submitUpdateComment()" type="submit" class="flex justify-self-end btn btn-secondary ">
+                      Modifier
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-
       <label for="my-modal-comment" (click)="setPostCommentData(article.id_article)" class="btn modal-button">Commenter</label>
       <input type="checkbox" id="my-modal-comment" class="modal-toggle">
       <div class="modal">
         <div class="modal-box relative">
           <label for="my-modal-comment" class="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
           <div class="grid grid-cols-1 gap-4">
-            <textarea [(ngModel)]="commentToAdd" class="textarea textarea-bordered textarea-secondary mt-2" placeholder="Contenue" value="{{article.contenu}}"></textarea>
+            <textarea [(ngModel)]="commentToAdd" class="textarea textarea-bordered textarea-secondary mt-2" placeholder="Commentaire" value="{{article.contenu}}"></textarea>
             <button (click)="submitAddComment()" type="submit" class="flex justify-self-end btn btn-secondary ">
-              Mettre à jour
+              Ajouter
             </button>
           </div>
         </div>
       </div>
-
-
       </div>
   </div>
 </div>

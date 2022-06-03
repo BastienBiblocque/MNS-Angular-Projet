@@ -22,6 +22,9 @@ export class ArticleListComponent implements OnInit {
   contenuUpdate:string
   idUpdate:number
 
+  commentaireUpdate:string;
+  idToUpdate:number;
+
   idArticleToAddComment:number
   commentToAdd:string
 
@@ -34,6 +37,9 @@ export class ArticleListComponent implements OnInit {
     this.idUpdate=0;
     this.idArticleToAddComment=0;
     this.commentToAdd='';
+    this.idToUpdate=0;
+    this.commentaireUpdate='';
+
     this.checkJwt();
     this.getArticlesAndComment();
     //formulaire d'ajout d'article
@@ -155,6 +161,22 @@ export class ArticleListComponent implements OnInit {
 
   submitAddComment() {
     this.CommentService.postComment(this.commentToAdd, this.idArticleToAddComment).subscribe(() => {
+      this.getArticlesAndComment()
+    })
+  }
+
+  submitUpdateComment(){
+    this.CommentService.updateComment(this.commentaireUpdate, this.idToUpdate).subscribe(() => {
+      this.getArticlesAndComment()
+    })
+  }
+
+  setUpdateCommentData(contenu:string,id:number){
+    this.commentaireUpdate = contenu;
+    this.idToUpdate = id;
+  }
+  deleteCommentaire(id:number) {
+    this.CommentService.deleteComment(id).subscribe(() => {
       this.getArticlesAndComment()
     })
   }
