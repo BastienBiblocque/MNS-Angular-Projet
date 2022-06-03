@@ -60,8 +60,6 @@ export class ArticleListComponent implements OnInit {
   }
 
   getArticlesAndComment(): void {
-    //article
-
     this.articles = [{ id_article: 0, titre: '', contenu: '', id:0, auteur:'',commentaire:[{ id_commentaire: 0, contenu: '', id:0, id_article:0, auteur:'' }] }];
     let articlesList:Array<any>;
     this.ArticlesService.getArticles().subscribe((val: any) => {
@@ -80,7 +78,6 @@ export class ArticleListComponent implements OnInit {
             }
             element.commentaire = [];
             commentsList = val;
-            //add dans articles
             this.articles?.push(element);
           })
           commentsList.forEach((comment: { id_commentaire: number; contenu: string; id: number; id_article: number; auteur:string })=>{
@@ -97,23 +94,6 @@ export class ArticleListComponent implements OnInit {
         })
       })
     })
-
-
-    // //commentaire
-    // let commentsList:Array<any>;
-    // this.CommentService.getComments().subscribe((val: any) => {
-    //   commentsList = val;
-    //   let usersList:Array<any>;
-    //   this.UsersService.getUsers().subscribe((val: any) => {
-    //     usersList = val;
-    //     commentsList.forEach((element: { id_commentaire: number; contenu: string; id: number; id_article: number; auteur:string })=>{
-    //       const auteur = usersList.find(user=> user.id === element.id )
-    //       element.auteur = auteur.pseudo
-    //       this.commentaires?.push(element)
-    //     })
-    //   })
-    // })
-
   }
 
   submitForm() {
@@ -158,7 +138,6 @@ export class ArticleListComponent implements OnInit {
     })
   }
 
-
   submitAddComment() {
     this.CommentService.postComment(this.commentToAdd, this.idArticleToAddComment).subscribe(() => {
       this.getArticlesAndComment()
@@ -180,5 +159,4 @@ export class ArticleListComponent implements OnInit {
       this.getArticlesAndComment()
     })
   }
-
 }
