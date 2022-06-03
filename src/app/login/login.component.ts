@@ -29,8 +29,11 @@ export class LoginComponent implements OnInit {
 
   submitForm() {
     if (this.connectForm.valid) {
-      this.LoginService.postLogin(this.connectForm.value.mail,this.connectForm.value.password);
-      this.router.navigateByUrl('/')
+      if (this.LoginService.postLogin(this.connectForm.value.mail,this.connectForm.value.password)){
+        this.router.navigateByUrl('/')
+      } else {
+        alert('Erreur de connexion')
+      }
     }
     else {
       alert('il y a une erreur dans le formulaire')

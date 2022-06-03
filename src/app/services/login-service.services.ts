@@ -10,11 +10,17 @@ export class LoginServiceService {
     this.userData = {token:'',id:'',email:''}
   }
 
-  postLogin(email: string, password: string) {
-    this.http.post<any>("https://reseau.jdedev.fr/api/user/connect",{email:email,password:password}).subscribe(data=>{
-      this.userData=data;
-      return 'users log';
-    })
+  postLogin(email: string, password: string):boolean {
+    this.http.post<any>("https://reseau.jdedev.fr/api/user/connect",{email:email,password:password}).subscribe({
+      next:data=>{
+      this.userData = data;
+      return true;
+      },
+      error:err=>{
+        return false
+      }
+  })
+    return false;
   }
   getUsersData() {
     return this.userData;
