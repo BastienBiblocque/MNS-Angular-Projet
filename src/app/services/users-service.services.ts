@@ -35,13 +35,13 @@ export class UsersServiceServices {
     return this.http.delete<any>(`https://reseau.jdedev.fr/api/user/${id}`,{headers:headers})
   }
 
-  updateUser(pseudo: string, email: string, password:string, id:string):any {
+  updateUser(pseudo: string, email: string, password:string,avatar:string, id:string,):any {
     const jwt = this.LoginService.getJwt();
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       'Authorization': `Bearer ${jwt}`
     })
-    return this.http.put<any>(`https://reseau.jdedev.fr/api/user/${id}`,{pseudo:pseudo,email:email,password:password,avatar:''}, {headers})
+    return this.http.put<any>(`https://reseau.jdedev.fr/api/user/${id}`,{pseudo:pseudo,email:email,password:password,avatar:avatar}, {headers})
   }
 
 }

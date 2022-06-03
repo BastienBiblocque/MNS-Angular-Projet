@@ -19,6 +19,7 @@ export class UserPageComponent implements OnInit {
   pseudoUpdate:string
   mailUpdate:string
   passwordUpdate:string
+  avatarUpdate:string
 
   constructor(private ArticlesServices:ArticlesServiceServices,private UsersServices:UsersServiceServices,private CommentServices:CommentServiceServices, private LoginServices:LoginServiceService, private router: Router) {
     this.checkJwt();
@@ -30,6 +31,7 @@ export class UserPageComponent implements OnInit {
     this.pseudoUpdate='';
     this.mailUpdate='';
     this.passwordUpdate='';
+    this.avatarUpdate='';
   }
 
   getUserData(): void {
@@ -84,7 +86,7 @@ export class UserPageComponent implements OnInit {
     const url = this.router.url.split('/');
     const regex = new RegExp(/^(?=.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*\W).*$/);
     if (regex.test(this.passwordUpdate)){
-      this.UsersServices.updateUser( this.pseudoUpdate, this.mailUpdate, this.passwordUpdate, url[url.length - 1], ).subscribe(() => {
+      this.UsersServices.updateUser( this.pseudoUpdate, this.mailUpdate, this.passwordUpdate,this.avatarUpdate, url[url.length - 1], ).subscribe(() => {
         this.getUserData()
       })
     } else {

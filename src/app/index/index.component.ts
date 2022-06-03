@@ -14,6 +14,23 @@ export class IndexComponent implements OnInit {
   }
 
   checkJwt(){
+    console.log("                              _.-.\n" +
+      "                             /  99\\\n" +
+      "                            (      `\\\n" +
+      "                            |\\\\ ,  ,|\n" +
+      "                    __      | \\\\____/\n" +
+      "              ,.--\"`-.\".   /   `---'\n" +
+      "          _.-'          '-/      |\n" +
+      "      _.-\"   |   '-.             |_/_\n" +
+      ",__.-'  _,.--\\      \\      ((    /-\\\n" +
+      "',_..--'      `\\     \\      \\\\_ /\n" +
+      "                `-,   )      |\\' \n" +
+      "                  |   |-.,,-\" (  \n" +
+      "                  |   |   `\\   `',_\n" +
+      "                  )    \\    \\,(\\(\\-'\n" +
+      "                  \\     `-,_\n" +
+      "                   \\_(\\-(\\`-`\n" +
+      "                      \"  \"")
     if (!this.LoginServices.getJwt()) {
       this.router.navigateByUrl('/login');
     } else {

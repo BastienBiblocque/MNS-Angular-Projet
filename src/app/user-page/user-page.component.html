@@ -16,7 +16,8 @@
             <div class="grid grid-cols-1 gap-4">
               <input [(ngModel)]="pseudoUpdate" class="input input-bordered input-secondary w-full max-w-xs" placeholder="Pseudo">
               <input [(ngModel)]="mailUpdate" class="input input-bordered input-secondary w-full max-w-xs" placeholder="Mail">
-              <input [(ngModel)]="passwordUpdate" class="input input-bordered input-secondary w-full max-w-xs" placeholder="Nouveau mot de passe">
+              <input [(ngModel)]="avatarUpdate" class="input input-bordered input-secondary w-full max-w-xs" placeholder="Avatar">
+              <input [(ngModel)]="passwordUpdate" class="input input-bordered input-secondary w-full max-w-xs" type="password" placeholder="Nouveau mot de passe">
               <button type="submit" (click)="updateProfil()" class="flex justify-self-end btn btn-secondary ">
                 Mettre à jour
               </button>
